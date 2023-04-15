@@ -35,7 +35,6 @@ def extras(cfg: DictConfig) -> None:
         rich_utils.enforce_tags(cfg, save_to_file=True)
 
     # check if you everything commit before train
-    print(cfg.get("debug_mode"))
     if not cfg.get("debug_mode"):
         if has_uncommitted_git_changes():
             log.warning("You are not commited the changes!")

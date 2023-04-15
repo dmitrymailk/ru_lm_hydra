@@ -43,7 +43,7 @@ debug_mode: False
 test: False
 
 # compile model for faster training with pytorch 2.0
-compile: True
+compile: False
 
 # simply provide checkpoint path to resume training
 ckpt_path: null
