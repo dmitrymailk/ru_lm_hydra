@@ -37,13 +37,13 @@ tags: ["dev"]
 
 # set False to skip model training
 train: True
-
+debug_mode: False
 # evaluate on test set, using best model weights achieved during training
 # lightning chooses best weights based on the metric specified in checkpoint callback
 test: False
 
 # compile model for faster training with pytorch 2.0
-compile: False
+compile: True
 
 # simply provide checkpoint path to resume training
 ckpt_path: null

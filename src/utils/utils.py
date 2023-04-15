@@ -5,6 +5,7 @@ from typing import Callable
 from omegaconf import DictConfig
 
 from src.utils import pylogger, rich_utils
+from src.utils.check_git import has_uncommitted_git_changes
 
 log = pylogger.get_pylogger(__name__)
 
@@ -32,6 +33,13 @@ def extras(cfg: DictConfig) -> None:
     if cfg.extras.get("enforce_tags"):
         log.info("Enforcing tags! <cfg.extras.enforce_tags=True>")
         rich_utils.enforce_tags(cfg, save_to_file=True)
+
+    # check if you everything commit before train
+    print(cfg.get("debug_mode"))
+    if not cfg.get("debug_mode"):
+        if has_uncommitted_git_changes():
+            log.warning("You are not commited the changes!")
+            raise Exception("You are not commited the changes!")
 
     # pretty print config tree using Rich library
     if cfg.extras.get("print_config"):
