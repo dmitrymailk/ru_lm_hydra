@@ -162,8 +162,8 @@ hydra:
       hydra: default.yaml
       extras: default.yaml
       paths: default.yaml
-      trainer: deepspeed.yaml
-      logger: null
+      trainer: fsdp.yaml
+      logger: wandb.yaml
       callbacks: default.yaml
       model: mnist.yaml
       data: mnist.yaml

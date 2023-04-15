@@ -69,6 +69,19 @@ callbacks:
     max_depth: -1
   rich_progress_bar:
     _target_: lightning.pytorch.callbacks.RichProgressBar
+logger:
+  wandb:
+    _target_: lightning.pytorch.loggers.wandb.WandbLogger
+    save_dir: ${paths.output_dir}
+    offline: false
+    id: null
+    anonymous: null
+    project: lightning-hydra-template
+    log_model: false
+    prefix: ''
+    group: ''
+    tags: []
+    job_type: ''
 trainer:
   _target_: lightning.pytorch.trainer.Trainer
   default_root_dir: ${paths.output_dir}
@@ -77,8 +90,8 @@ trainer:
   check_val_every_n_epoch: 1
   deterministic: false
   accelerator: gpu
-  devices: 2
-  strategy: deepspeed
+  devices: 0,1
+  strategy: fsdp
 paths:
   root_dir: ${oc.env:PROJECT_ROOT}
   data_dir: ${paths.root_dir}/data/
