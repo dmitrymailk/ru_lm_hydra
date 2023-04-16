@@ -4,8 +4,8 @@
 # order of defaults determines the order in which configs override each other
 defaults:
   - _self_
-  - data: mnist.yaml
-  - model: mnist.yaml
+  - data: instruct.yaml
+  - model: instruct.yaml
   - callbacks: default.yaml
   - logger: wandb.yaml # set logger here or use command line (e.g. `python train.py logger=tensorboard`)
   - trainer: fsdp.yaml
@@ -15,7 +15,7 @@ defaults:
 
   # experiment configs allow for version control of specific hyperparameters
   # e.g. best hyperparameters for given model and datamodule
-  - experiment: null
+  - experiment: llama_instruct.yaml
 
   # config for hyperparameter optimization
   - hparams_search: null
@@ -37,7 +37,7 @@ tags: ["dev"]
 
 # set False to skip model training
 train: True
-debug_mode: False
+debug_mode: True
 # evaluate on test set, using best model weights achieved during training
 # lightning chooses best weights based on the metric specified in checkpoint callback
 test: False

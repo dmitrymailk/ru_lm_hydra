@@ -1,0 +1,26 @@
+_target_: src.models.instruct_module.InstructLitModule
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.LinearLR
+  _partial_: true
+  # mode: min
+  # factor: 0.1
+  # patience: 10
+
+# lm_model:
+#   _target_: transformers.LlamaForCausalLM.from_pretrained
+#   pretrained_model_name_or_path: decapoda-research/llama-7b-hf
+#   torch_dtype: auto
+#   device_map: {"": 0}
+
+n_gpus: 2
+n_nodes: 1
+max_epochs: 2
+accumulate_grad_batches: 4
+datamodule: 0

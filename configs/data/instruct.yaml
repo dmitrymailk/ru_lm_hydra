@@ -1,0 +1,15 @@
+_target_: src.data.instructions_datamodule.InstructionsDataModule
+
+data_paths: [
+  "/home/kosenko/ru_chatGPT/ru_instruct/ru_instruct/sandbox/datasets_processed/IlyaGusev_ru_turbo_alpaca_formatted.json"
+]
+train_val_split: [0.9, 0.1]
+train_batch_size: 1
+valid_batch_size: 1
+num_workers: 32
+pin_memory: False
+tokenizer_max_len: 512
+tokenizer: 
+  _target_: transformers.LlamaTokenizer.from_pretrained
+  pretrained_model_name_or_path: decapoda-research/llama-7b-hf
+save_data_path: /home/kosenko/deepspeed/ru_lm/data/ru_instruct_v1
