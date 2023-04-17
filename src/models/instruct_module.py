@@ -45,7 +45,7 @@ class InstructLitModule(LightningModule):
             pretrained_model_name_or_path="decapoda-research/llama-7b-hf",
             torch_dtype=torch.float16,
             device_map="auto",
-        ).cpu()
+        )
 
         # loss function
         self.criterion = torch.nn.CrossEntropyLoss()
@@ -66,6 +66,8 @@ class InstructLitModule(LightningModule):
         self.train_loss.reset()
 
     def model_step(self, batch: Any):
+        print(batch['input_ids'].device)
+        print(self.lm_model.device)
         output = self.forward(batch)
         loss = output.loss
         return loss
